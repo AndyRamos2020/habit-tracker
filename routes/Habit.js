@@ -1,0 +1,46 @@
+const express = require("express");
+const router = express.Router();
+const Habit = require("../models/Habit");
+
+router.post("/", async (req, res) => {
+  try {
+    const habit = new Habit(req.body);
+    await habit.save();
+    res.status(201).json(habit);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.get("/", async (req, res) => {
+  try {
+    const habits = await Habit.find();
+    res.json(habits);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  try {
+    const habit = await Habit.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.json(habit);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    await Habit.findByIdAndDelete(req.params.id);
+    res.json({ message: "Hábito eliminado correctamente" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+module.exports = router;
