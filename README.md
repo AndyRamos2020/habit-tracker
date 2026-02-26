@@ -13,7 +13,7 @@ cd backend
 npm install  
 npm run dev  
 
-El servidor corre en http://localhost:3000
+El servidor corre en http://localhost:5000
 
 ---
 
@@ -23,4 +23,4 @@ cd frontend
 npm install  
 npm run dev  
 
-La aplicación corre en http://localhost:3001
+La aplicación corre en http://localhost:3000
