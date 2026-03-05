@@ -4,6 +4,7 @@ export interface Habit {
   _id: string;
   name: string;
   streak: number;
+  completedToday: boolean;
 }
 
 interface HabitsState {
@@ -21,14 +22,13 @@ const initialState: HabitsState = {
 export const fetchHabits = createAsyncThunk<Habit[]>(
   "habits/fetchHabits",
   async () => {
-    const response = await fetch("http://localhost:5000/habits")
+    const response = await fetch("http://localhost:5000/habits");
 
     if (!response.ok) {
       throw new Error("Error al obtener hábitos");
     }
 
-    const data: Habit[] = await response.json();
-    return data;
+    return await response.json();
   }
 );
 
