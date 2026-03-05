@@ -18,11 +18,11 @@ cd frontend
 npm install
 npm run dev
 
+http://localhost:3000
+
 # Backend
 cd backend
 npm install
 npm start
 
-
-http://localhost:3000
 http://localhost:5000
