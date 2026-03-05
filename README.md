@@ -1,26 +1,28 @@
-# Habit Tracker
+Habit Tracker - Semana 3
 
-Proyecto full-stack desarrollado con:
+Descripción
+Aplicación web para seguimiento de hábitos, desarrollada con Next.js 13+, Redux Toolkit y TailwindCSS. Permite visualizar hábitos, ver una barra de progreso y un botón “Done” (sin funcionalidad por ahora).
+Esta entrega corresponde a la Semana 3 del proyecto.
 
-- Backend: Express + MongoDB
-- Frontend: Next.js + Redux
+Tecnologías
+Frontend: Next.js 13 (App Router), TypeScript, TailwindCSS, Redux Toolkit
+Backend: Express.js + MongoDB (API de hábitos)
+Estado global: Redux + createAsyncThunk
+Funcionalidades
+Lista dinámica de hábitos desde la base de datos
+Barra de progreso estática (visual)
+Botón “Done” por hábito (sin funcionalidad)
 
-## Instalación
+# Frontend
+cd frontend
+npm install
+npm run dev
 
-### Backend
+# Backend
+cd backend
+npm install
+npm start
 
-cd backend  
-npm install  
-npm run dev  
 
-El servidor corre en http://localhost:3000
-
----
-
-### Frontend
-
-cd frontend  
-npm install  
-npm run dev  
-
-La aplicación corre en http://localhost:3001
+http://localhost:3000
+http://localhost:5000
