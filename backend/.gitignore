@@ -1,0 +1,58 @@
+# Backend - Habit Tracker
+
+API REST con Express.js y MongoDB.
+
+## 🚀 Funcionalidades
+
+* Registro de usuarios
+* Login con JWT
+* Middleware de autenticación
+* CRUD de hábitos
+* Sistema de racha diaria
+
+## ▶️ Ejecución
+
+```
+npm install
+npm run dev
+```
+
+## 🔐 Variables de entorno
+
+Crear `.env`:
+
+```
+PORT=5000
+MONGO_URI=tu_mongo_uri
+JWT_SECRET=secreto
+```
+
+## 🔄 Cómo funciona
+
+1. Usuario se registra o inicia sesión
+2. Se genera un JWT
+3. El frontend envía el token en cada request
+4. Middleware valida el token
+5. Se permite acceso a rutas protegidas
+
+## 📡 Endpoints
+
+### Auth
+
+* POST /api/auth/register
+* POST /api/auth/login
+
+### Habits
+
+* GET /api/habits
+* POST /api/habits
+* PUT /api/habits/:id
+
+## 🛡️ Seguridad
+
+* JWT
+* Rutas protegidas
+
+## ⚠️ Notas
+
+* No subir `.env`
