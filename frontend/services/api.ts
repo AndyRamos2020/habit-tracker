@@ -25,13 +25,15 @@ export const loginUser = async (email: string, password: string) => {
 
   if (data.token) {
     localStorage.setItem("token", data.token);
+    document.cookie = `token=${data.token}; path=/`;
   }
 
   return data;
 };
 
 const getToken = () => {
-  return localStorage.getItem("token");
+  const token = localStorage.getItem("token");
+  return token ? `Bearer ${token}` : "";
 };
 
 export const createHabit = async (name: string) => {
@@ -39,7 +41,7 @@ export const createHabit = async (name: string) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": getToken() || ""
+      "Authorization": getToken()
     },
     body: JSON.stringify({ name })
   });
@@ -50,7 +52,7 @@ export const createHabit = async (name: string) => {
 export const getHabits = async () => {
   const res = await fetch(`${API_URL}/habits`, {
     headers: {
-      "Authorization": getToken() || ""
+      "Authorization": getToken()
     }
   });
 
@@ -61,7 +63,7 @@ export const completeHabit = async (id: string) => {
   const res = await fetch(`${API_URL}/habits/${id}`, {
     method: "PUT",
     headers: {
-      "Authorization": localStorage.getItem("token") || ""
+      "Authorization": getToken()
     }
   });
 

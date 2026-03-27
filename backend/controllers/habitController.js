@@ -2,40 +2,63 @@ const Habit = require("../models/Habit");
 
 exports.createHabit = async (req, res) => {
   try {
+    const { name } = req.body;
+
+    if (!name || !name.trim()) {
+      return res.status(400).json({ message: "Nombre requerido" });
+    }
+
     const habit = new Habit({
-      userId: req.user.id,
-      name: req.body.name
+      name,
+      user: req.user.id,
+      streak: 0,
+      lastCompleted: null
     });
 
     await habit.save();
     res.json(habit);
-  } catch (err) {
-    res.status(500).json({ message: "Error al crear hábito" });
+  } catch (error) {
+    res.status(500).json({ error });
   }
 };
 
 exports.getHabits = async (req, res) => {
   try {
-    const habits = await Habit.find({ userId: req.user.id });
+    const habits = await Habit.find({ user: req.user.id });
     res.json(habits);
-  } catch (err) {
-    res.status(500).json({ message: "Error al obtener hábitos" });
+  } catch (error) {
+    res.status(500).json({ error });
   }
 };
 
 exports.completeHabit = async (req, res) => {
   try {
-    const habit = await Habit.findById(req.params.id);
+    const habit = await Habit.findOne({
+      _id: req.params.id,
+      user: req.user.id
+    });
+
+    if (!habit) {
+      return res.status(404).json({ message: "No encontrado" });
+    }
 
     const today = new Date();
-    const last = habit.lastCompleted;
+    const todayStr = today.toDateString();
 
-    if (last) {
-      const diff = Math.floor((today - last) / (1000 * 60 * 60 * 24));
+    if (habit.lastCompleted) {
+      const lastStr = new Date(habit.lastCompleted).toDateString();
 
-      if (diff === 1) {
+      if (lastStr === todayStr) {
+        return res.json({ message: "Ya completado hoy" });
+      }
+
+      const yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+      const yesterdayStr = yesterday.toDateString();
+
+      if (lastStr === yesterdayStr) {
         habit.streak += 1;
-      } else if (diff > 1) {
+      } else {
         habit.streak = 1;
       }
     } else {
@@ -43,9 +66,10 @@ exports.completeHabit = async (req, res) => {
     }
 
     habit.lastCompleted = today;
+
     await habit.save();
     res.json(habit);
-  } catch (err) {
-    res.status(500).json({ message: "Error al completar hábito" });
+  } catch (error) {
+    res.status(500).json({ error });
   }
 };
