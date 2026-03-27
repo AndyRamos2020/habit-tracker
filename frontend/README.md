@@ -1,37 +1,45 @@
 # Frontend - Habit Tracker
 
-Aplicación cliente desarrollada con Next.js.
+Aplicación web desarrollada con Next.js para la gestión de hábitos diarios.
+
+## Tecnologías
+- Next.js
+- JavaScript
+- Fetch API
 
 ## Funcionalidades
+- Registro de usuarios
+- Inicio de sesión
+- Persistencia de sesión con token
+- Creación de hábitos
+- Visualización de hábitos
+- Marcado de hábitos como completados
+- Barra de progreso basada en racha de días
+- Protección de rutas
 
-* Registro de usuario
-* Login
-* Dashboard
-* Crear hábitos
-* Completar hábitos
-* Barra de progreso (0 a 66 días)
+## Instalación
 
-## ▶ Ejecución
+1. Entrar a la carpeta frontend:
+   cd frontend
 
-```
-npm install
-npm run dev
-```
+2. Instalar dependencias:
+   npm install
 
-## 🌐 Rutas
+3. Ejecutar el proyecto:
+   npm run dev
 
-* /register
-* /login
-* /dashboard
+4. Abrir en navegador:
+   http://localhost:3000
 
-## Cómo funciona
+## Estructura
 
-1. El usuario se registra o inicia sesión
-2. El backend devuelve un token JWT
-3. El token se guarda en localStorage
-4. Cada petición envía el token en headers
-5. El backend valida y responde con datos
+- app/ → páginas (login, dashboard)
+- services/ → conexión con backend
+- middleware.js → protección de rutas
 
 ## Notas
 
-* Backend debe correr en http://localhost:5000
+- El frontend consume la API del backend en:
+  http://localhost:4000/api
+
+- El token se guarda en localStorage y cookies para autenticación.
