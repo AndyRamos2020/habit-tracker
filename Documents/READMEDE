@@ -1,0 +1,78 @@
+# Habit Tracker App
+
+Aplicación web para la gestión de hábitos diarios, desarrollada como proyecto final de programación avanzada.
+
+## Autor
+
+Andy Ramos
+Carné: 25000611
+
+## Descripción
+
+El sistema permite a los usuarios crear y dar seguimiento a hábitos diarios. Cada hábito puede marcarse como completado una vez por día, incrementando un contador. Si el usuario no cumple el hábito en un día, el progreso se reinicia.
+
+El objetivo es ayudar a los usuarios a alcanzar una racha de hasta 66 días, basada en estudios sobre formación de hábitos.
+
+## Tecnologías utilizadas
+
+Frontend:
+
+* Next.js
+* React
+* Tailwind CSS
+
+Backend:
+
+* Node.js
+* Express.js
+* MongoDB
+* JWT para autenticación
+
+## Funcionalidades
+
+* Registro de usuarios
+* Inicio de sesión
+* Creación de hábitos
+* Listado de hábitos
+* Marcado de hábitos como completados
+* Cálculo de progreso
+* Visualización de barra de progreso
+
+## Estructura del proyecto
+
+/backend-habitos
+/frontend-habitos
+
+## Instalación
+
+1. Clonar el repositorio:
+
+git clone <URL_DEL_REPOSITORIO>
+
+2. Ejecutar backend:
+
+cd backend-habitos
+npm install
+npm run dev
+
+3. Ejecutar frontend:
+
+cd frontend-habitos
+npm install
+npm run dev
+
+## Variables de entorno
+
+Crear un archivo .env en el backend con las siguientes variables:
+
+MONGO_URI=tu_cadena_de_conexion
+JWT_SECRET=tu_secreto
+
+## Despliegue
+
+Frontend: <LINK_FRONTEND>
+Backend: <LINK_BACKEND>
+
+## Notas
+
+Proyecto desarrollado como parte del curso de programación avanzada, aplicando conceptos de desarrollo full stack.
